@@ -1,5 +1,8 @@
 ## RightNow Media Services Demo
 
+[![Build Status](https://travis-ci.com/RightNowMinistries/OrderServiceDemo.svg?branch=master)](https://travis-ci.com/RightNowMinistries/OrderServiceDemo)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=OrderServiceDemo&metric=alert_status)](https://sonarcloud.io/dashboard/index/OrderServiceDemo)
+
 The RightNow Media back-end platform consists of several web apis running .net core on linux-based containers. On average, the back end services are processing 40,000 web calls per minute, built to be highly scalable and high throughput (our target is to serve 99% of requests in less than 1 second. Our average response time on these requests is less than 100 ms).
 
 This application is a model built structurally to look like our real services and to simulate what working in our code may look like. Many things are reduced down to help simplify the exercise, but if you are able to navigate around this code, you will likely feel right at home in our actual services.
@@ -17,11 +20,11 @@ Happy coding.
 
 ## How to Build
 
-This project was built with Visual Studio 2017 (15.5.2) using .NET Core Runtime 2.0.5. If you are familiar with these tools, you should be able to open the solution, compile, and go.
+This project was built with Visual Studio 2017 (15.7.5) using .NET Core Runtime 2.1.5. If you are familiar with these tools, you should be able to open the solution, compile, and go.
 
 For those who may be new to this ecosystem, you will need the following:
 
-* The .NET Core SDK (SDK version 2.1.4 includes .NET Core Runtime 2.0.5). It can be downloaded [Here](https://github.com/dotnet/core/blob/master/release-notes/download-archives/2.0.5-download.md)
+* The .NET Core SDK (SDK version 2.1.403 includes .NET Core Runtime 2.1.5). It can be downloaded [Here](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1.5/2.1.5.md)
 * While we use Visual Studio 2017 on windows as our primary IDE, this sample should also execute fine using [Visual Studio Code](https://code.visualstudio.com/) or [Visual Studio for Mac](https://www.visualstudio.com/vs/visual-studio-mac/)
 * For those that would prefer to just use a text editor, that would be fine too. The application can be built / launched via the following set of commands from a cmd, powershell, or bash window. These commands are from the root directory of the code base. Note that depending on your OS, your slashes may vary.
 ```
