@@ -15,12 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderServiceDemo.Services",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E7A75D4-9CA4-4C50-9997-CFE599F7A4EA}"
 	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+		build.sh = build.sh
 		README.md = README.md
+		sonar.sh = sonar.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2273EB23-14A0-44DA-87E3-958113B4035A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderServiceDemo.Unit.Tests", "tests\OrderServiceDemo.Unit.Tests\OrderServiceDemo.Unit.Tests.csproj", "{98D33063-B213-4633-BF6F-D8E705412E8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderServiceDemo.Unit.Tests", "tests\OrderServiceDemo.Unit.Tests\OrderServiceDemo.Unit.Tests.csproj", "{98D33063-B213-4633-BF6F-D8E705412E8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
