@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "development" ]];
+if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]];
 then
   dotnet-sonarscanner begin /key:OrderServiceDemo \
     /name:OrderServiceDemo \
@@ -26,7 +26,7 @@ else
     /d:sonar.cs.opencover.reportsPaths="./tests/OrderServiceDemo.Unit.Tests/coverage.opencover.xml" \
     /d:sonar.coverage.exclusions="./tests/**" \
     /d:sonar.pullrequest.github.repository=$TRAVIS_REPO_SLUG \
-    /d:sonar.pullrequest.base="development" \
+    /d:sonar.pullrequest.base="master" \
     /d:sonar.pullrequest.provider="GitHub" \
     /d:sonar.pullrequest.branch=$TRAVIS_PULL_REQUEST_BRANCH \
     /d:sonar.pullrequest.key=$TRAVIS_PULL_REQUEST
