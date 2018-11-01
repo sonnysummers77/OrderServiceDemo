@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using OrderServiceDemo.Core;
 using OrderServiceDemo.Models;
 using OrderServiceDemo.Models.Exceptions;
 using OrderServiceDemo.Services.Infrastructure;
@@ -44,18 +45,38 @@ namespace OrderServiceDemo.Services.Components
             return order;
         }
 
-        public Task<Order> CancelOrder(int orderId)
+        public async Task<Order> CancelOrder(int orderId)
         {
-            //TODO: Add service implementation. Throw exception if the indicated order does not exist or has already been cancelled.
-            //TODO: Add Unit tests for this service method.
-            throw new System.NotImplementedException();
+            var order = await GetOrder(orderId);
+
+            if(order != null)
+            {
+                order.OrderStatus = OrderStatus.GetOrderStatus(1025);
+                var result = await _orderRepository.UpdateOrder(order);
+
+                if (result != null)
+                    return (Order)result;
+                else
+                    throw new OrderIsAlreadyCanceled("Requested order is already canceled");
+            }
+            else
+                throw new OrderDoesNotExistException("Order cannot be cancelled because it doesn't exist");
+            
         }
 
-        public Task<Order> DeleteOrder(int orderId)
+        public async Task<Order> DeleteOrder(int orderId)
         {
-            //TODO: Add service implementation. Throw exception if the indicated order does not exist.
-            //TODO: Add Unit tests for this service method.
-            throw new System.NotImplementedException();
+           
+            var order = await GetOrder(orderId);
+            if (order != null)
+            {
+                await _orderLineItemRepository.DeleteAllLineItemsInOrder(orderId);
+                await _orderRepository.DeleteOrder(order);
+            }
+            else
+                throw new OrderDoesNotExistException("Order was not deleted. It did not exist.");
+   
+            return order;
         }
 
         private async Task<Order> BuildUpOrder(Order order)

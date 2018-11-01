@@ -22,5 +22,15 @@ namespace OrderServiceDemo.Services.Interfaces
         /// <param name="orderId"></param>
         /// <returns>The deleted Order</returns>
         Task<Order> DeleteOrder(int orderId);
+
+        /// <summary>
+        /// Cancels the order supplied. Throws <see cref="Models.Exceptions.OrderIsAlreadyCanceled"/>
+        /// when an order id is upplied for an order that is already <see cref="Core.OrderStatus.Cancelled"/>
+        /// Throws <see cref="Models.Exceptions.OrderDoesNotExistException"/> when an />
+        /// order id does not exist/>
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns>The deleted Order</returns>
+        Task<Order> CancelOrder(int orderId);
     }
 }

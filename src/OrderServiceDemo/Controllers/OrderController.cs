@@ -51,18 +51,39 @@ namespace OrderServiceDemo.Controllers
 
         [HttpPost]
         [Route("v1/orders/{orderId:int}/cancel")]
-        public Task<Order> CancelOrder(int orderId)
+        public async Task<Order> CancelOrder(int orderId)
         {
-            //TODO: Add controller implementation.
-            return Task.FromException<Order>(BuildExceptionResponse(HttpStatusCode.NotImplemented, new NotImplementedException()));
+            try
+            {
+               var canceledOrder = await _orderService.CancelOrder(orderId);
+               var response = _mapper.Map<Order>(canceledOrder);
+               return response;
+            }
+            catch (OrderDoesNotExistException ex)
+            {
+                throw BuildExceptionResponse(HttpStatusCode.Accepted, ex);
+            }
+            catch (OrderIsAlreadyCanceled ex)
+            {
+                throw BuildExceptionResponse(HttpStatusCode.Accepted, ex);
+            }
+
         }
 
         [HttpDelete]
         [Route("v1/orders/{orderId:int}")]
-        public Task<Order> DeleteOrder(int orderId)
+        public async Task<Order> DeleteOrder(int orderId)
         {
-            //TODO: Add controller implementation.
-            return Task.FromException<Order>(BuildExceptionResponse(HttpStatusCode.NotImplemented, new NotImplementedException()));
+            try
+            {
+                var deletedOrder = await _orderService.CancelOrder(orderId);
+                var response = _mapper.Map<Order>(deletedOrder);
+                return response;
+            }
+            catch (OrderDoesNotExistException ex)
+            {
+                throw BuildExceptionResponse(HttpStatusCode.Accepted, ex);
+            }
         }
     }
 }
