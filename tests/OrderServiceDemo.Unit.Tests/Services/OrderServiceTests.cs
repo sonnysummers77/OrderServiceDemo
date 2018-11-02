@@ -3,7 +3,10 @@ using OrderServiceDemo.Models.Exceptions;
 using OrderServiceDemo.Services.Components;
 using OrderServiceDemo.Services.Infrastructure;
 using OrderServiceDemo.Core;
+using OrderServiceDemo.Models;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+
 using Xunit;
 
 namespace OrderServiceDemo.Unit.Tests.Services
@@ -66,6 +69,25 @@ namespace OrderServiceDemo.Unit.Tests.Services
             
             //Act && Assert
             var result = await Assert.ThrowsAsync<OrderDoesNotExistException>(() => service.DeleteOrder(Arg.Any<int>()));
+        }
+
+        [Fact]
+        public async Task OrderService_WhenDeletingOrder_IfDeleteIsSuccessful_ReturnsDeletedOrder()
+        {
+            //Arrange
+            var service = BuildService();
+            var order = OrderServiceTestData.GetFakeOrder();
+            var orderLineItems = OrderServiceTestData.GetFakeOrderLineItems();
+
+            _orderLineItemRepository.DeleteAllLineItemsInOrder(Arg.Any<int>()).Returns(orderLineItems);
+            _orderRepository.DeleteOrder(order).Returns(order);
+            service.GetOrder(Arg.Any<int>()).Returns(order);
+
+            //Act 
+            var actualOrder = await service.DeleteOrder(order.OrderId);
+
+            //Assert
+            Assert.Equal(order.OrderId, actualOrder.OrderId);
         }
 
         // TODO write happy path tests

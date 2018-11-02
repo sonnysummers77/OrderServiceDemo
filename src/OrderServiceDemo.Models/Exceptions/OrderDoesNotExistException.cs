@@ -3,9 +3,9 @@ using System;
 namespace OrderServiceDemo.Models.Exceptions
 {
     [Serializable()]
-     class OrderDoesNotExistException : Exception
+     public class OrderDoesNotExistException : Exception
     {
-        protected OrderDoesNotExistException(string message)
+        public OrderDoesNotExistException(string message)
             : base(message)
         {
 
