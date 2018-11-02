@@ -24,7 +24,7 @@ namespace OrderServiceDemo.Services.Interfaces
         Task<Order> DeleteOrder(int orderId);
 
         /// <summary>
-        /// Cancels the order supplied. Throws <see cref="Models.Exceptions.OrderIsAlreadyCanceled"/>
+        /// Cancels the order supplied. Throws <see cref="Models.Exceptions.OrderIsAlreadyCanceledException"/>
         /// when an order id is upplied for an order that is already <see cref="Core.OrderStatus.Cancelled"/>
         /// Throws <see cref="Models.Exceptions.OrderDoesNotExistException"/> when an />
         /// order id does not exist/>

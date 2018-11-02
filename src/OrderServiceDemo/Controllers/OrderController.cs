@@ -63,7 +63,7 @@ namespace OrderServiceDemo.Controllers
             {
                 throw BuildExceptionResponse(HttpStatusCode.Accepted, ex);
             }
-            catch (OrderIsAlreadyCanceled ex)
+            catch (OrderIsAlreadyCanceledException ex)
             {
                 throw BuildExceptionResponse(HttpStatusCode.Accepted, ex);
             }

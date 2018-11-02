@@ -55,9 +55,9 @@ namespace OrderServiceDemo.Services.Components
                 var result = await _orderRepository.UpdateOrder(order);
 
                 if (result != null)
-                    return (Order)result;
+                    return result;
                 else
-                    throw new OrderIsAlreadyCanceled("Requested order is already canceled");
+                    throw new OrderIsAlreadyCanceledException("Requested order is already canceled");
             }
             else
                 throw new OrderDoesNotExistException("Order cannot be cancelled because it doesn't exist");

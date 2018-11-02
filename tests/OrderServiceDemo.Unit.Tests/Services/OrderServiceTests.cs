@@ -53,7 +53,7 @@ namespace OrderServiceDemo.Unit.Tests.Services
             _orderRepository.GetOrder(orderId).Returns(order);
 
             //Act && Assert
-            var result = await Assert.ThrowsAsync<OrderIsAlreadyCanceled>(() => service.CancelOrder(orderId));
+            var result = await Assert.ThrowsAsync<OrderIsAlreadyCanceledException>(() => service.CancelOrder(orderId));
         }
 
         [Fact]
