@@ -4,6 +4,7 @@ using OrderServiceDemo.Services.Components;
 using OrderServiceDemo.Services.Infrastructure;
 using OrderServiceDemo.Core;
 using OrderServiceDemo.Models;
+using OrderServiceDemo.Unit.Tests.Utility;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -20,6 +21,22 @@ namespace OrderServiceDemo.Unit.Tests.Services
         {
             _orderRepository = Substitute.For<IOrderRepository>();
             _orderLineItemRepository = Substitute.For<IOrderLineItemRepository>();
+        }
+
+        [Fact]
+        public async Task OrderService_WhenCreatingOrder_IfSuccess_ReturnsGoodness()
+        {
+            //Arrange
+            var order = OrderServiceTestData.GetFakeOrder();
+            var service = BuildService();
+            _orderLineItemRepository.CreateOrderLineItem(Arg.Any<OrderLineItem>()).Returns(OrderServiceTestData.GetFakeOrderLineItem(1,1));
+            _orderRepository.CreateOrder(order).Returns(order);
+
+            //Act 
+            var actualOrder = await service.CreateOrder(order);
+
+            //Assert
+            Assert.Equal(order.OrderId, actualOrder.OrderId);
         }
 
         [Fact]

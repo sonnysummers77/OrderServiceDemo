@@ -2,7 +2,7 @@ using System;
 
 namespace OrderServiceDemo.Models.Exceptions
 {
-    [Serializable()]
+    [Serializable]
     public class OrderIsAlreadyCanceledException : Exception
     {
         public OrderIsAlreadyCanceledException(string message)

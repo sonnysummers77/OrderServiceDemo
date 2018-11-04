@@ -2,7 +2,7 @@ using System;
 
 namespace OrderServiceDemo.Models.Exceptions
 {
-    [Serializable()]
+    [Serializable]
      public class OrderDoesNotExistException : Exception
     {
         public OrderDoesNotExistException(string message)

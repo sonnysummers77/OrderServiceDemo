@@ -76,7 +76,7 @@ namespace OrderServiceDemo.Controllers
         {
             try
             {
-                var deletedOrder = await _orderService.CancelOrder(orderId);
+                var deletedOrder = await _orderService.DeleteOrder(orderId);
                 var response = _mapper.Map<Order>(deletedOrder);
                 return response;
             }
