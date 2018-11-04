@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace OrderServiceDemo.Models.Exceptions
 {
@@ -9,6 +10,18 @@ namespace OrderServiceDemo.Models.Exceptions
             : base(message)
         {
 
+        }
+
+        public OrderDoesNotExistException(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+
+
+        protected OrderDoesNotExistException(SerializationInfo info, StreamingContext context)
+          : base(info, context)
+        {
         }
     }
 }
