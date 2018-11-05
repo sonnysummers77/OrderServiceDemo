@@ -44,7 +44,7 @@ namespace OrderServiceDemo.Unit.Tests.Controllers
             Assert.Equal((int)System.Net.HttpStatusCode.BadRequest, result.StatusCode);
         }
         [Fact]
-        public async Task OrderController_WhenCreatingOrder_IfValidRequest_ShouldReturn_Success()
+        public async Task OrderController_WhenCreatingOrder_IfValidRequest_ShouldReturn_Order()
         {
             //Arrange
             _orderSerivce
@@ -52,6 +52,7 @@ namespace OrderServiceDemo.Unit.Tests.Controllers
                 .Returns((OrderServiceTestData.GetFakeOrder()));
 
             var controller = BuildController();
+            var expectedOrder = OrderServiceTestData.GetFakeOrder();
 
             //Act
             var result = await controller.CreateOrder(new Core.v1.RequestModels.CreateOrderRequest
@@ -60,7 +61,11 @@ namespace OrderServiceDemo.Unit.Tests.Controllers
             });
 
             //Assert
-            Assert.Equal(OrderServiceTestData.GetFakeOrder().OrderId, result.OrderId);
+            Assert.Equal(expectedOrder.OrderId, result.OrderId);
+            Assert.Equal(expectedOrder.OrderStatus, result.OrderStatus);
+            Assert.Equal(expectedOrder.OrderStatusId, result.OrderStatusId);
+            Assert.Equal(expectedOrder.OrderStatus.ID, result.OrderStatus.ID);
+            Assert.Equal(expectedOrder.OrderStatus.Name, result.OrderStatus.Name);
         }
 
         [Fact]

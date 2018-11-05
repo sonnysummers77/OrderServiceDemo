@@ -49,7 +49,7 @@ namespace OrderServiceDemo.Services.Components
         {
             var order = await GetOrder(orderId);
 
-            if(order != null)
+            if (order != null)
             {
                 order.OrderStatus = OrderStatus.GetOrderStatus(1025);
                 var result = await _orderRepository.UpdateOrder(order);
@@ -61,7 +61,6 @@ namespace OrderServiceDemo.Services.Components
             }
             else
                 throw new OrderDoesNotExistException("Order cannot be cancelled because it doesn't exist");
-            
         }
 
         public async Task<Order> DeleteOrder(int orderId)

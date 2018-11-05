@@ -24,7 +24,7 @@ namespace OrderServiceDemo.Unit.Tests.Services
         }
 
         [Fact]
-        public async Task OrderService_WhenCreatingOrder_IfSuccess_ReturnsGoodness()
+        public async Task OrderService_WhenCreatingOrder_IfSuccess_ReturnsOrder()
         {
             //Arrange
             var order = OrderServiceTestData.GetFakeOrder();
@@ -106,8 +106,6 @@ namespace OrderServiceDemo.Unit.Tests.Services
             //Assert
             Assert.Equal(order.OrderId, actualOrder.OrderId);
         }
-
-        // TODO write happy path tests
 
         private OrderService BuildService() => new OrderService(
             _orderRepository,

@@ -18,7 +18,6 @@ namespace OrderServiceDemo.Models.Exceptions
 
         }
 
-
         protected OrderDoesNotExistException(SerializationInfo info, StreamingContext context)
           : base(info, context)
         {
